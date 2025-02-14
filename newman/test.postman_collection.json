@@ -1,0 +1,1714 @@
+{
+	"info": {
+		"_postman_id": "bbf1a650-5626-466f-a51a-a1502a4a8d8d",
+		"name": "Kontrollöö Event",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9319536"
+	},
+	"item": [
+		{
+			"name": "1 - CRUD",
+			"item": [
+				{
+					"name": "Add Speaker",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"data is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.name).to.eql(\"Mari\");",
+									"    pm.expect(jsonData.email).to.eql(\"mari@itb.ee\");",
+									"    pm.environment.set(\"crudSpeakerId\", jsonData.id); ",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Mari\",\n    \"email\": \"mari@itb.ee\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/speakers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"speakers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Speaker",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"data is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.name).to.eql(\"Mari\");",
+									"    pm.expect(jsonData.email).to.eql(\"mari@itb.ee\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/speakers/{{crudSpeakerId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"speakers",
+								"{{crudSpeakerId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Speaker",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": {{crudSpeakerId}},\n\t\"name\": \"Mari\",\n    \"email\": \"mari@itb2203.ee\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/speakers/{{crudSpeakerId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"speakers",
+								"{{crudSpeakerId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Speaker Updated",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"get data is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.name).to.eql(\"Mari\");",
+									"    pm.expect(jsonData.email).to.eql(\"mari@itb2203.ee\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/speakers/{{crudSpeakerId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"speakers",
+								"{{crudSpeakerId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"data is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.name).to.eql(\"Ettevõtlus\");",
+									"    pm.expect(jsonData.date).to.eql(\"2023-12-18T00:00:00\");",
+									"    pm.expect(jsonData.location).to.eql(\"Tallinn\");",
+									"    pm.environment.set(\"crudEventId\", jsonData.id); ",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"speakerId\": {{crudSpeakerId}},\n    \"name\": \"Ettevõtlus\",\n    \"date\": \"2023-12-18T00:00:00\",\n    \"location\": \"Tallinn\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/events",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"data is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.name).to.eql(\"Ettevõtlus\");",
+									"    pm.expect(jsonData.date).to.eql(\"2023-12-18T00:00:00\");",
+									"    pm.expect(jsonData.location).to.eql(\"Tallinn\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/events/{{crudEventId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"events",
+								"{{crudEventId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Attendee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"data is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.name).to.eql(\"Vello\");",
+									"    pm.expect(jsonData.email).to.eql(\"vello@itb.ee\");",
+									"    pm.expect(jsonData.registrationTime).to.eql(\"2023-12-11T00:00:00\");",
+									"    pm.environment.set(\"crudAttendeeId\", jsonData.id); ",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventId\": {{crudEventId}},\n\t\"name\": \"Vello\",\n    \"email\": \"vello@itb.ee\",\n    \"registrationTime\": \"2023-12-11T00:00:00\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/attendees",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"attendees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Attendee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"data is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.name).to.eql(\"Vello\");",
+									"    pm.expect(jsonData.email).to.eql(\"vello@itb.ee\");",
+									"    pm.expect(jsonData.registrationTime).to.eql(\"2023-12-11T00:00:00\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/attendees/{{crudAttendeeId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"attendees",
+								"{{crudAttendeeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Attendee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/attendees/{{crudAttendeeId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"attendees",
+								"{{crudAttendeeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Deleted Attendee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/attendees/{{crudAttendeeId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"attendees",
+								"{{crudAttendeeId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3.a - Speaker Email Invalid",
+			"item": [
+				{
+					"name": "Add Speaker",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Mari\",\n    \"email\": \"mariitb.ee\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/speakers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"speakers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3.b - Attendee email invalid",
+			"item": [
+				{
+					"name": "Add Speaker",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"invSpeakerId\", jsonData.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Mari\",\n    \"email\": \"mari@itb.ee\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/speakers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"speakers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"invEventId\", jsonData.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"speakerId\": {{invSpeakerId}},\n    \"name\": \"Ettevõtlus\",\n    \"date\": \"2023-12-18T00:00:00\",\n    \"location\": \"Tallinn\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/events",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Attendee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventId\": {{invEventId}},\n\t\"name\": \"Kelli\",\n    \"email\": \"kelli.ee\",\n    \"registrationTime\": \"2023-12-11T00:00:00\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/attendees",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"attendees"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3.c - Registration After Event",
+			"item": [
+				{
+					"name": "Add Speaker",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"lateSpeakerId\", jsonData.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Mari\",\n    \"email\": \"mari@itb.ee\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/speakers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"speakers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"lateEventId\", jsonData.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"speakerId\": {{lateSpeakerId}},\n    \"name\": \"Ettevõtlus\",\n    \"date\": \"2023-12-18T00:00:00\",\n    \"location\": \"Tallinn\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/events",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Attendee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventId\": {{lateEventId}},\n\t\"name\": \"Andrus\",\n    \"email\": \"andrus@itb.ee\",\n    \"registrationTime\": \"2023-12-28T00:00:00\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/attendees",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"attendees"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3.d - Attendee With Email Already Exists",
+			"item": [
+				{
+					"name": "Add Speaker",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"dupSpeakerId\", jsonData.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Mari\",\n    \"email\": \"mari@itb.ee\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/speakers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"speakers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"dupEventId\", jsonData.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"speakerId\": {{dupSpeakerId}},\n    \"name\": \"Ettevõtlus\",\n    \"date\": \"2023-12-18T00:00:00\",\n    \"location\": \"Tallinn\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/events",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Attendee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventId\": {{dupEventId}},\n\t\"name\": \"meelis\",\n    \"email\": \"meelis@itb.ee\",\n    \"registrationTime\": \"2023-12-11T00:00:00\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/attendees",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"attendees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Attendee 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventId\": {{dupEventId}},\n\t\"name\": \"anne\",\n    \"email\": \"meelis@itb.ee\",\n    \"registrationTime\": \"2023-12-10T00:00:00\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/attendees",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"attendees"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3.e - Speaker With Email Exists",
+			"item": [
+				{
+					"name": "Add Speaker",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"existSpeakerId\", jsonData.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Mari\",\n    \"email\": \"mari@itb.ee\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/speakers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"speakers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"existEventId\", jsonData.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"speakerId\": {{existSpeakerId}},\n    \"name\": \"Ettevõtlus\",\n    \"date\": \"2023-12-18T00:00:00\",\n    \"location\": \"Tallinn\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/events",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Attendee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventId\": {{existEventId}},\n\t\"name\": \"Malle\",\n    \"email\": \"mari@itb.ee\",\n    \"registrationTime\": \"2023-12-09T00:00:00\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/attendees",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"attendees"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4.a - Missing Speaker",
+			"item": [
+				{
+					"name": "Add Event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"speakerId\": 99999,\n    \"name\": \"Ettevõtlus\",\n    \"date\": \"2023-12-18T00:00:00\",\n    \"location\": \"Tallinn\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/events",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"events"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4.b - Missing Event",
+			"item": [
+				{
+					"name": "Add Attendee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventId\": 99999,\n\t\"name\": \"Juhan\",\n    \"email\": \"9999999999999999@itb.ee\",\n    \"registrationTime\": \"2023-12-28T00:00:00\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/attendees",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"attendees"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "5 - Days Before Event",
+			"item": [
+				{
+					"name": "Add Speaker",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"filterSpeakerId\", jsonData.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Mari\",\n    \"email\": \"mari@itb.ee\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/speakers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"speakers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"filterEventId\", jsonData.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"speakerId\": {{filterSpeakerId}},\n    \"name\": \"Ettevõtlus\",\n    \"date\": \"2023-12-28T00:00:00\",\n    \"location\": \"Tallinn\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/events",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Attendee",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"filterAttendee1Id\", jsonData.id);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventId\": {{filterEventId}},\n\t\"name\": \"Gunnar\",\n    \"email\": \"gunnar@itb.ee\",\n    \"registrationTime\": \"2023-12-27T00:00:00\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/attendees",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"attendees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Attendee 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"filterAttendee2Id\", jsonData.id);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventId\": {{filterEventId}},\n\t\"name\": \"Pille\",\n    \"email\": \"pille@itb.ee\",\n    \"registrationTime\": \"2023-12-25T00:00:00\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/attendees",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"attendees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Attendee 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"filterAttendee3Id\", jsonData.id);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventId\": {{filterEventId}},\n\t\"name\": \"Siim\",\n    \"email\": \"siim@itb.ee\",\n    \"registrationTime\": \"2023-12-10T00:00:00\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/attendees",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"attendees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Event 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"filterEvent2Id\", jsonData.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"speakerId\": {{filterSpeakerId}},\n    \"name\": \"Ettevõtlus\",\n    \"date\": \"2023-10-05T00:00:00\",\n    \"location\": \"Tallinn\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/events",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Attendee 4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"filterAttendee4Id\", jsonData.id);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventId\": {{filterEvent2Id}},\n\t\"name\": \"Jüri\",\n    \"email\": \"juri@itb.ee\",\n    \"registrationTime\": \"2023-09-30T00:00:00\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/attendees",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"attendees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Attendee 5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"filterAttendee5Id\", jsonData.id);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventId\": {{filterEvent2Id}},\n\t\"name\": \"Kati\",\n    \"email\": \"kati@itb.ee\",\n    \"registrationTime\": \"2023-09-25T00:00:00\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/attendees",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"attendees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Attendees 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"data is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filterAttendee1Id\"))).to.be.false;",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filterAttendee2Id\"))).to.be.true;",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filterAttendee3Id\"))).to.be.true;",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filterAttendee4Id\"))).to.be.true;",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filterAttendee5Id\"))).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/attendees?daysBeforeEvent=2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"attendees"
+							],
+							"query": [
+								{
+									"key": "daysBeforeEvent",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Attendees 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"data is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filterAttendee1Id\"))).to.be.false;",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filterAttendee2Id\"))).to.be.false;",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filterAttendee3Id\"))).to.be.true;",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filterAttendee4Id\"))).to.be.false;",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filterAttendee5Id\"))).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/attendees?daysBeforeEvent=7",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"attendees"
+							],
+							"query": [
+								{
+									"key": "daysBeforeEvent",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Attendees 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"data is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filterAttendee1Id\"))).to.be.false;",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filterAttendee2Id\"))).to.be.true;",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filterAttendee3Id\"))).to.be.true;",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filterAttendee4Id\"))).to.be.true;",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filterAttendee5Id\"))).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/attendees?daysBeforeEvent=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"attendees"
+							],
+							"query": [
+								{
+									"key": "daysBeforeEvent",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Attendees 4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"data is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filterAttendee1Id\"))).to.be.false;",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filterAttendee2Id\"))).to.be.false;",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filterAttendee3Id\"))).to.be.false;",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filterAttendee4Id\"))).to.be.false;",
+									"    pm.expect(jsonData.some(x => x.id === pm.environment.get(\"filterAttendee5Id\"))).to.be.false;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/attendees?daysBeforeEvent=100",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"attendees"
+							],
+							"query": [
+								{
+									"key": "daysBeforeEvent",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
